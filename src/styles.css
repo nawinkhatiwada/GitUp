@@ -1,0 +1,274 @@
+/* Uses GitHub's own CSS variables so light/dark/high-contrast themes all match. */
+
+.gitup-pr-branches {
+  display: flex;
+  flex-wrap: wrap;
+  flex-basis: 100%;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0;
+  padding: 6px 10px;
+  width: fit-content;
+  max-width: 100%;
+  border: 1px solid var(--borderColor-default, #d0d7de);
+  border-radius: 8px;
+  background: var(--bgColor-muted, #f6f8fa);
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.gitup-ref {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+}
+
+.gitup-ref-label {
+  color: var(--fgColor-muted, #656d76);
+  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.gitup-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  max-width: 420px;
+  padding: 0 6px;
+  border-radius: 6px;
+  font-family: var(--fontStack-monospace, ui-monospace, SFMono-Regular, Menlo, monospace);
+  color: var(--fgColor-accent, #0969da);
+  background: var(--bgColor-accent-muted, rgba(84, 174, 255, 0.15));
+}
+.gitup-ref--head .gitup-chip {
+  color: var(--fgColor-done, #8250df);
+  background: var(--bgColor-done-muted, rgba(194, 151, 255, 0.15));
+}
+.gitup-chip svg { flex: none; }
+.gitup-chip-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gitup-arrow {
+  display: inline-flex;
+  color: var(--fgColor-muted, #656d76);
+}
+
+.gitup-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 22px;
+  height: 22px;
+  margin: 0 0 0 2px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--fgColor-muted, #656d76);
+  cursor: pointer;
+  vertical-align: middle;
+}
+.gitup-copy-btn:hover {
+  color: var(--fgColor-accent, #0969da);
+  background: var(--bgColor-neutral-muted, rgba(175, 184, 193, 0.2));
+}
+.gitup-copy-btn:focus-visible {
+  outline: 2px solid var(--focus-outlineColor, #0969da);
+  outline-offset: 1px;
+}
+.gitup-copy-btn--done,
+.gitup-copy-btn--done:hover {
+  color: var(--fgColor-success, #1a7f37);
+}
+
+.gitup-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  z-index: 2147483647;
+  transform: translate(-50%, 12px);
+  max-width: min(90vw, 480px);
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--fgColor-onEmphasis, #fff);
+  background: var(--bgColor-emphasis, #24292f);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+.gitup-toast--show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+.gitup-toast--error {
+  background: var(--bgColor-danger-emphasis, #cf222e);
+}
+
+/* PR list rows */
+.gitup-row-branches {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  margin: 2px 0 0 8px;
+  font-size: 12px;
+  line-height: 20px;
+  vertical-align: middle;
+  font-weight: 400;
+}
+h1 + .gitup-row-branches,
+h2 + .gitup-row-branches,
+h3 + .gitup-row-branches,
+h4 + .gitup-row-branches {
+  display: flex;
+  margin-left: 0;
+}
+.gitup-row-branches .gitup-chip { max-width: 260px; }
+.gitup-row-branches .gitup-copy-btn { width: 20px; height: 20px; margin-left: 0; }
+.gitup-row-branches--loading { color: var(--fgColor-muted, #656d76); }
+
+/* Placed at the end of the row's meta line, after the checks status */
+.gitup-row-branches--meta {
+  display: inline-flex;
+  flex: 0 0 auto !important;
+  flex-wrap: nowrap !important;
+  white-space: nowrap !important;
+  width: max-content !important;
+  max-width: none !important;
+  margin: 0 0 0 4px !important;
+  gap: 2px;
+  font-size: 11px;
+  line-height: 18px;
+}
+.gitup-row-branches--meta::before {
+  content: "·";
+  margin-right: 4px;
+  color: var(--fgColor-muted, #656d76);
+}
+.gitup-row-branches--meta .gitup-chip {
+  max-width: 220px;
+  padding: 0 4px;
+  gap: 3px;
+}
+.gitup-row-branches--meta svg { width: 12px; height: 12px; }
+.gitup-row-branches--meta .gitup-copy-btn { width: 18px; height: 18px; }
+
+.gitup-row-branches--meta .gitup-ref,
+.gitup-row-branches--meta .gitup-chip,
+.gitup-row-branches--meta .gitup-arrow {
+  flex: none;
+  white-space: nowrap;
+}
+
+/* ---- GitHub Actions: branch / tag labels -------------------------------- */
+.gitup-actions-ref {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 3px;
+  max-width: 260px;
+  padding: 0 6px !important;
+  border-radius: 6px !important;
+  font-family: var(--fontStack-monospace, ui-monospace, SFMono-Regular, Menlo, monospace) !important;
+  font-size: 11px !important;
+  line-height: 18px !important;
+  text-decoration: none !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  color: var(--fgColor-success, #1a7f37) !important;
+  background: var(--bgColor-success-muted, rgba(74, 194, 107, 0.15)) !important;
+  border: 0 !important;
+}
+.gitup-actions-ref * {
+  color: inherit !important;
+  font: inherit !important;
+  background: transparent !important;
+}
+.gitup-actions-ref::before {
+  content: "";
+  flex: none;
+  width: 11px;
+  height: 11px;
+  background: currentColor;
+  -webkit-mask: var(--gitup-icon) no-repeat center / contain;
+  mask: var(--gitup-icon) no-repeat center / contain;
+  --gitup-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M9.5 3.25a2.25 2.25 0 1 1 3 2.122V6A2.5 2.5 0 0 1 10 8.5H6a1 1 0 0 0-1 1v1.128a2.251 2.251 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.5 0v1.836A2.493 2.493 0 0 1 6 7h4a1 1 0 0 0 1-1v-.628A2.25 2.25 0 0 1 9.5 3.25Zm-6 0a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Zm8.25-.75a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5ZM4.25 12a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Z'/></svg>");
+}
+.gitup-actions-ref--tag {
+  color: var(--fgColor-attention, #9a6700) !important;
+  background: var(--bgColor-attention-muted, rgba(212, 167, 44, 0.2)) !important;
+}
+.gitup-actions-ref--tag::before {
+  --gitup-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M1 7.775V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 0 1 0 2.474l-5.026 5.026a1.75 1.75 0 0 1-2.474 0l-6.25-6.25A1.752 1.752 0 0 1 1 7.775Zm1.5 0c0 .066.026.13.073.177l6.25 6.25a.25.25 0 0 0 .354 0l5.025-5.025a.25.25 0 0 0 0-.354l-6.25-6.25a.25.25 0 0 0-.177-.073H2.75a.25.25 0 0 0-.25.25ZM6 5a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z'/></svg>");
+}
+
+.gitup-copy-btn--sm {
+  width: 18px;
+  height: 18px;
+}
+.gitup-copy-btn--sm svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* "on ⑂ main ⧉" after a tag */
+.gitup-actions-on {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: 2px;
+  font-size: 11px;
+  line-height: 18px;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.gitup-actions-on-label,
+.gitup-actions-more {
+  color: var(--fgColor-muted, #656d76);
+  margin: 0 2px;
+}
+.gitup-actions-on .gitup-chip {
+  padding: 0 4px;
+  gap: 3px;
+  max-width: 200px;
+  color: var(--fgColor-success, #1a7f37);
+  background: var(--bgColor-success-muted, rgba(74, 194, 107, 0.15));
+}
+.gitup-actions-on .gitup-chip svg {
+  width: 11px;
+  height: 11px;
+}
+
+/* Runs list: ref shown under the "Workflow #N: …" line */
+.gitup-run-ref {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 2px;
+  margin-top: 4px;
+  min-width: 0;
+  white-space: nowrap;
+}
+.gitup-run-ref .gitup-actions-ref {
+  max-width: min(420px, 100%);
+}
+.gitup-run-ref .gitup-chip-text {
+  min-width: 0;
+}
+.gitup-hidden {
+  display: none !important;
+}
